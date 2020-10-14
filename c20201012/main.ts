@@ -26,9 +26,7 @@ export class ClosestLargerNumber {
 	}
 
 	public getResultGivenIndex (index: number): number | null | undefined {
-		const startingValue: number = this.values[index];
-		const sortedValues: number[] = [...this.values].sort((a, b) => a - b);
-		const distanceFromStartingValue = this.getClosestLargestValue(sortedValues, index);
+		const distanceFromStartingValue = this.getClosestLargestValue([...this.values].sort((a, b) => a - b), index);
 
 		return distanceFromStartingValue
 			? this.values.indexOf(distanceFromStartingValue)
