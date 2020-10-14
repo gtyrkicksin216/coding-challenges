@@ -20,21 +20,25 @@
 
 export class ClosestLargerNumber {
 	private values: number[];
-	private startingIndex: number;
 
-	constructor (startingIndex: number, values: number[]) {
+	constructor (values: number[]) {
 		this.values = values;
-		this.startingIndex = startingIndex;
 	}
 
-	public getResult (): number | null | undefined {
-		const startingValue: number = this.values[this.startingIndex];
+	public getResultGivenIndex (index: number): number | null | undefined {
+		const startingValue: number = this.values[index];
 		const sortedValues: number[] = [...this.values].sort((a, b) => a - b);
-		const nextLargest = sortedValues[sortedValues.findIndex(value => value === startingValue) + 1];
-		const nextLargestIndex: number = this.values.findIndex(value => value === nextLargest);
+		const distanceFromStartingValue = this.getClosestLargestValue(sortedValues, index);
 
-		return nextLargestIndex !== -1
-			? nextLargestIndex
+		return distanceFromStartingValue
+			? this.values.indexOf(distanceFromStartingValue)
 			: null;
+	}
+
+	private getClosestLargestValue (values: number[], startingIndex: number): number | null {
+		const largerValues = values.map(value => ({ value, distance: Math.abs(this.values.indexOf(value) - startingIndex) }))
+			.filter(item => item.distance !== 0 && item.value > this.values[startingIndex]);
+
+		return largerValues.find(value => value.distance === Math.min(...largerValues.map(a => a.distance)))?.value ?? null;
 	}
 }
