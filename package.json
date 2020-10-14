@@ -1,12 +1,12 @@
 {
-  "name": "c20201012",
+  "name": "coding-challenges",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-		"start": "tsc -w",
-		"test": "jest",
-		"test.watch": "jest --watch"
+    "start": "tsc -w",
+    "test": "jest",
+    "test.watch": "jest --watch"
   },
   "keywords": [],
   "author": "",

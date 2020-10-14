@@ -13,14 +13,16 @@
  * You can assume that you can do some pre-processing. `sum()` should be
  * optimized over the pre-processing step
  */
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ListReducer = void 0;
 class ListReducer {
     constructor(numList) {
         this.numList = numList;
     }
     sum(i, j) {
-        const subList = this.numList.slice(i, j);
-        return subList.reduce((a, b) => a + b);
+        return this.numList
+            .slice(i, j)
+            .reduce((a, b) => a + b);
     }
 }
-const listReducer = new ListReducer([1, 2, 3, 4, 5]);
-console.log(listReducer.sum(1, 3));
+exports.ListReducer = ListReducer;

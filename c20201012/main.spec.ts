@@ -17,7 +17,7 @@ describe(`Find the closest larger number index`, () => {
 		expect(result).toEqual(1);
 	});
 
-	it(``, () => {
+	it(`Should return 4`, () => {
 		const result = new ClosestLargerNumber([1, 5, 3, 4, 7, 8, 9]).getResultGivenIndex(3);
 		expect(result).toBe(4);
 	});

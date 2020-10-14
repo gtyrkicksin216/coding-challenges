@@ -27,5 +27,3 @@ export class ListReducer {
 	}
 }
 
-const listReducer = new ListReducer([1, 2, 3, 4, 5]);
-console.log(listReducer.sum(1, 3));

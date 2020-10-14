@@ -21,20 +21,20 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ClosestLargerNumber = void 0;
 class ClosestLargerNumber {
-    constructor(startingIndex, values) {
+    constructor(values) {
         this.values = values;
-        this.startingIndex = startingIndex;
     }
-    getResult() {
-        const valueAtStartingIndex = this.values[this.startingIndex];
-        const sortedAscending = this.values.sort((a, b) => a - b);
-        console.log(sortedAscending);
-        const sortedIndex = sortedAscending.findIndex(value => value === valueAtStartingIndex);
-        console.log(this.values.findIndex(value => value === sortedAscending[sortedIndex]));
-        return this.values.findIndex(value => value > valueAtStartingIndex);
+    getResultGivenIndex(index) {
+        const distanceFromStartingValue = this.getClosestLargestValue([...this.values].sort((a, b) => a - b), index);
+        return distanceFromStartingValue
+            ? this.values.indexOf(distanceFromStartingValue)
+            : null;
+    }
+    getClosestLargestValue(values, startingIndex) {
+        var _a, _b;
+        const largerValues = values.map(value => ({ value, distance: Math.abs(this.values.indexOf(value) - startingIndex) }))
+            .filter(item => item.distance !== 0 && item.value > this.values[startingIndex]);
+        return (_b = (_a = largerValues.find(value => value.distance === Math.min(...largerValues.map(a => a.distance)))) === null || _a === void 0 ? void 0 : _a.value) !== null && _b !== void 0 ? _b : null;
     }
 }
 exports.ClosestLargerNumber = ClosestLargerNumber;
-// const closest = new ClosestLargerNumber(0, [4, 1, 3, 5, 6]);
-const closest = new ClosestLargerNumber(1, [8, 6, 7, 5, 3, 0, 9]);
-console.log(closest.getResult());
